@@ -17,9 +17,11 @@ import {
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
 import { mainNavbarItems } from './consts/navbaritems.js';
 
 export default function NavBar() {
+    const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
 
     const toggleDrawer = (newOpen) => () => {
@@ -32,10 +34,10 @@ export default function NavBar() {
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
-                {mainNavbarItems.map((text, index) => (
-                    <ListItem key={text} disablePadding>
+                {mainNavbarItems.map((item, index) => (
+                    <ListItem key={item} disablePadding onClick={ () => navigate(item.route) }>
                         <ListItemButton>
-                            <ListItemText primary={text.label} />
+                            <ListItemText primary={item.label} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -46,7 +48,7 @@ export default function NavBar() {
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static">
+                <AppBar position="static" sx={{bgcolor:'#272727'}}>
                     <Toolbar>
                         <IconButton
                             size="large"
@@ -76,10 +78,10 @@ export default function NavBar() {
                             <Divider />
                             {DrawerList}
                         </Drawer>
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             News
                         </Typography>
-                        <Button color="inherit">Login</Button>
+                        <Button color="inherit">Login</Button> */}
                     </Toolbar>
                 </AppBar>
             </Box>
