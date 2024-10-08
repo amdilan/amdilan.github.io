@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -6,7 +7,7 @@ export default function Home() {
     },[]);
     return (
         <div>
-        
+            <Typography variant="h4">Hello World</Typography>
         </div>
     );
 }

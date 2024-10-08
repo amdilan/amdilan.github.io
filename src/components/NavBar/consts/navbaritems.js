@@ -1,7 +1,9 @@
+import MailIcon from '@mui/icons-material/Mail';
+
 export const mainNavbarItems = [
     {
         id:'0',
-        icon:'',
+        icon:<MailIcon />,
         label:'Home',
         route:'/',
     },

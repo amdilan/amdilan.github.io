@@ -1,7 +1,6 @@
 import React from 'react';
 import {
     Box,
-    Typography,
     Toolbar,
     IconButton,
     AppBar,
@@ -14,8 +13,6 @@ import {
     Divider,
     ListItemIcon,
 } from '@mui/material';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { mainNavbarItems } from './consts/navbaritems.js';
@@ -28,16 +25,22 @@ export default function NavBar() {
         setOpen(newOpen);
     };
 
-    const drawerWidth = 220;
     const listdrawer = ['Home',];
 
     const DrawerList = (
         <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
             <List>
                 {mainNavbarItems.map((item, index) => (
-                    <ListItem key={item} disablePadding onClick={ () => navigate(item.route) }>
+                    <ListItem key={item} disablePadding onClick={() => navigate(item.route)}>
                         <ListItemButton>
-                            <ListItemText primary={item.label} />
+                            {item.icon === "" ?
+                                <ListItemText primary={item.label} /> : <>
+                                    <ListItemIcon>
+                                        {item.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={item.label} />
+                                </>}
+
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -48,7 +51,7 @@ export default function NavBar() {
     return (
         <div>
             <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" sx={{bgcolor:'#272727'}}>
+                <AppBar position="static" sx={{ bgcolor: '#272727' }}>
                     <Toolbar>
                         <IconButton
                             size="large"
@@ -62,10 +65,8 @@ export default function NavBar() {
                         </IconButton>
                         <Drawer
                             sx={{
-                                width: drawerWidth,
                                 flexShrink: 0,
                                 '& .MuiDrawer-paper': {
-                                    width: drawerWidth,
                                     boxSizing: 'border-box',
                                 },
                             }}
